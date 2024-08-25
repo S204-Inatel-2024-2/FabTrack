@@ -23,16 +23,34 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
+    - name: Install Docker and Docker Compose
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y curl gnupg lsb-release
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+        sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+        sudo apt-get update
+        sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+        sudo curl -L "https://github.com/docker/compose/releases/download/2.18.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+        sudo chmod +x /usr/local/bin/docker-compose
+        docker --version
+        docker-compose --version
+
     - name: Run Docker Compose
-      uses: hoverkraft-tech/compose-action@v2.0.1
-      with: 
-        compose-file: "./docker-compose.yml"
+      run: |
+        docker-compose up -d
 
     - name: Wait for MSSQL to be ready
       run: |
-        # TODO: fix priority 0
         echo "Waiting for SQL Server to be up..."
-        sleep 30
+        for i in {1..30}; do
+          if docker-compose exec -T db /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'Admin!@#123' -Q 'SELECT 1' > /dev/null 2>&1; then
+            echo "SQL Server is up and running!"
+            break
+          fi
+          echo "SQL Server not ready yet..."
+          sleep 10
+        done
 
     - name: Create Database
       run: |

@@ -1,3 +1,4 @@
 Django
 mssql-django
 pillow
+pytest-Django

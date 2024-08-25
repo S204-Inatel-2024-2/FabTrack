@@ -1,28 +1,35 @@
+# accounts/views.py
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import AuthenticationForm
-from .forms import SignUpForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib import messages
 
-# Signup view
 def signup_view(request):
     if request.method == 'POST':
-        form = SignUpForm(request.POST)
+        form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)  # Log the user in after signup
-            return redirect('home')  # Redirect to the homepage
+            login(request, user)  # Automatically log in the user after signup
+            return redirect('home')  # Redirect to a home page or another view
+        else:
+            messages.error(request, 'Error occurred during signup.')
     else:
-        form = SignUpForm()
+        form = UserCreationForm()
     return render(request, 'accounts/signup.html', {'form': form})
 
-# Login view
 def login_view(request):
     if request.method == 'POST':
-        form = AuthenticationForm(data=request.POST)
+        form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
             user = form.get_user()
-            login(request, user)  # Log the user in after authentication
-            return redirect('home')  # Redirect to the homepage
+            login(request, user)
+            return redirect('home')  # Redirect to a home page or another view
+        else:
+            messages.error(request, 'Invalid username or password.')
     else:
         form = AuthenticationForm()
     return render(request, 'accounts/login.html', {'form': form})
+
+def logout_view(request):
+    logout(request)
+    return render(request, 'accounts/logout.html')  # Render the logout template

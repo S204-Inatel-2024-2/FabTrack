@@ -1,6 +1,42 @@
-<h1>Send a New Model</h1>
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit Model</button>
-</form>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send a New Model</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Send a New Model</h1>
+        <form method="post" enctype="multipart/form-data" class="form-container">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.model_name.label_tag }}
+                {{ form.model_name }}
+            </div>
+            <div class="form-group">
+                {{ form.stl_file.label_tag }}
+                {{ form.stl_file }}
+            </div>
+            <div class="form-group">
+                {{ form.material.label_tag }}
+                {{ form.material }}
+            </div>
+            <div class="form-group">
+                {{ form.infill_percentage.label_tag }}
+                {{ form.infill_percentage }}
+            </div>
+            <div class="form-group">
+                {{ form.layer_height.label_tag }}
+                {{ form.layer_height }}
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="button btn-primary">Submit Model</button>
+                <a href="{% url 'core:home' %}" class="button btn-secondary">Return to Home</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

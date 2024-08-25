@@ -1,3 +1,19 @@
-<h1>Welcome to the 3D Printing Queue System</h1>
-<a href="{% url 'core:send_model' %}">Send a new model</a>
-<a href="{% url 'core:history' %}">View order history</a>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to FabTrack</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to FabTrack</h1>
+        <div class="home-actions">
+            <a href="{% url 'core:send_model' %}" class="button btn-primary">Send a New Model</a>
+            <a href="{% url 'core:history' %}" class="button btn-secondary">View Order History</a>
+        </div>
+    </div>
+</body>
+</html>

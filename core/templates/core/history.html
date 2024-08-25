@@ -1,0 +1,8 @@
+<h1>Order History</h1>
+<ul>
+    {% for order in orders %}
+        <li>{{ order.model_name }} - {{ order.submitted_at }} - Completed: {{ order.is_completed }}</li>
+    {% empty %}
+        <li>No orders yet.</li>
+    {% endfor %}
+</ul>

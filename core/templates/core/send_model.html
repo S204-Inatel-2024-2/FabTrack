@@ -1,0 +1,6 @@
+<h1>Send a New Model</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit Model</button>
+</form>

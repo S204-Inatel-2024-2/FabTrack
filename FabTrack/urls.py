@@ -20,7 +20,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('django_admin/', admin.site.urls),  # Access admin at /django_admin/
-    path('home/', include('core.urls')),     # Access core app at /home/
+    path('home/', include('core.urls')),  # Access core app at /
     path('', include('accounts.urls')),  # Access accounts app at /accounts/
     path('admin/', include('admin_panel.urls')),  # Access admin panel at /admin/
     path('profile/', include('profiles.urls')),

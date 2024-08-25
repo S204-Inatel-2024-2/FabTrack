@@ -7,6 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Send a New Model</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        .hint-box {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -16,6 +23,7 @@
             <div class="form-group">
                 {{ form.model_name.label_tag }}
                 {{ form.model_name }}
+                <div class="hint-box">Enter a descriptive name for your 3D model.</div>
                 {% if form.model_name.errors %}
                     <div class="error">{{ form.model_name.errors }}</div>
                 {% endif %}
@@ -23,6 +31,7 @@
             <div class="form-group">
                 {{ form.stl_file.label_tag }}
                 {{ form.stl_file }}
+                <div class="hint-box">Upload the STL file for the 3D model you want to print.</div>
                 {% if form.stl_file.errors %}
                     <div class="error">{{ form.stl_file.errors }}</div>
                 {% endif %}
@@ -30,6 +39,7 @@
             <div class="form-group">
                 {{ form.material.label_tag }}
                 {{ form.material }}
+                <div class="hint-box">Select the type of filament material used for printing (e.g., ABS, PLA).</div>
                 {% if form.material.errors %}
                     <div class="error">{{ form.material.errors }}</div>
                 {% endif %}
@@ -37,6 +47,7 @@
             <div class="form-group">
                 {{ form.infill_percentage.label_tag }}
                 {{ form.infill_percentage }}
+                <div class="hint-box">Specify the infill percentage (0-100%) which determines the density of the printed model.</div>
                 {% if form.infill_percentage.errors %}
                     <div class="error">{{ form.infill_percentage.errors }}</div>
                 {% endif %}
@@ -44,6 +55,7 @@
             <div class="form-group">
                 {{ form.layer_height.label_tag }}
                 {{ form.layer_height }}
+                <div class="hint-box">Enter the layer height in millimeters (0.08 to 0.4 mm) which affects the detail and speed of printing.</div>
                 {% if form.layer_height.errors %}
                     <div class="error">{{ form.layer_height.errors }}</div>
                 {% endif %}

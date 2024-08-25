@@ -23,4 +23,5 @@ urlpatterns = [
     path('home/', include('core.urls')),     # Access core app at /home/
     path('', include('accounts.urls')),  # Access accounts app at /accounts/
     path('admin/', include('admin_panel.urls')),  # Access admin panel at /admin/
+    path('profile/', include('profiles.urls')),
 ]

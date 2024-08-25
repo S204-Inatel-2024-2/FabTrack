@@ -30,7 +30,7 @@ jobs:
 
     - name: Create Database
       run: |
-        sudo docker-compose exec -T db /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'Admin!@#123' -Q 'CREATE DATABASE FabTrackDB;'
+        docker exec -it db /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'Admin!@#123' -Q 'CREATE DATABASE FabTrackDB;'
 
     - name: Install Dependencies
       run: |

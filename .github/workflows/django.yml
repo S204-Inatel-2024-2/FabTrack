@@ -13,7 +13,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [3.10, 3.11, 3.12]
+        python-version: [3.9, 3.11, 3.12]
 
     steps:
     - uses: actions/checkout@v4
@@ -23,15 +23,10 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
-    - name: Install Docker and Docker Compose
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y docker.io docker-compose
-
-    - name: Start Docker Compose
-      run: |
-        docker-compose up -d
-        docker-compose logs -f &
+    - name: Run Docker Compose
+      uses: hoverkraft-tech/compose-action@v2.0.1
+      with: 
+        compose-file: "./docker-compose.yml"
 
     - name: Wait for MSSQL to be ready
       run: |

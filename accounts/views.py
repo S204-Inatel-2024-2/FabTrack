@@ -9,8 +9,8 @@ def signup_view(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)  # Automatically log in the user after signup
-            return redirect('/home')  # Redirect to a home page or another view
+            login(request, user)
+            return redirect('/home')
         else:
             messages.error(request, 'Error occurred during signup.')
     else:
@@ -23,7 +23,7 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('/home')  # Redirect to a home page or another view
+            return redirect('/home')
         else:
             messages.error(request, 'Invalid username or password.')
     else:
@@ -32,4 +32,4 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return render(request, 'accounts/logout.html')  # Render the logout template
+    return render(request, 'accounts/logout.html')

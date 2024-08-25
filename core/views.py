@@ -24,7 +24,7 @@ def send_model(request):
 
 @login_required
 def history(request):
-    orders = PrintModel.objects.filter(user=request.user)
+    orders = PrintModel.objects.filter(user=request.user).order_by('-submitted_at')
     return render(request, 'core/history.html', {'orders': orders})
 
 @login_required

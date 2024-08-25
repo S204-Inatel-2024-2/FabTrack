@@ -1,4 +1,4 @@
-<!-- core/templates/core/send_model.html-->
+<!-- core/templates/core/send_model.html -->
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -16,22 +16,37 @@
             <div class="form-group">
                 {{ form.model_name.label_tag }}
                 {{ form.model_name }}
+                {% if form.model_name.errors %}
+                    <div class="error">{{ form.model_name.errors }}</div>
+                {% endif %}
             </div>
             <div class="form-group">
                 {{ form.stl_file.label_tag }}
                 {{ form.stl_file }}
+                {% if form.stl_file.errors %}
+                    <div class="error">{{ form.stl_file.errors }}</div>
+                {% endif %}
             </div>
             <div class="form-group">
                 {{ form.material.label_tag }}
                 {{ form.material }}
+                {% if form.material.errors %}
+                    <div class="error">{{ form.material.errors }}</div>
+                {% endif %}
             </div>
             <div class="form-group">
                 {{ form.infill_percentage.label_tag }}
                 {{ form.infill_percentage }}
+                {% if form.infill_percentage.errors %}
+                    <div class="error">{{ form.infill_percentage.errors }}</div>
+                {% endif %}
             </div>
             <div class="form-group">
                 {{ form.layer_height.label_tag }}
                 {{ form.layer_height }}
+                {% if form.layer_height.errors %}
+                    <div class="error">{{ form.layer_height.errors }}</div>
+                {% endif %}
             </div>
             <div class="form-actions">
                 <button type="submit" class="button btn-primary">Submit Model</button>

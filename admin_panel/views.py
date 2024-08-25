@@ -1,4 +1,4 @@
-# core/views.py
+# admin_panel/views.py
 from django.http import HttpResponse
 
 def index(request):

@@ -1,4 +1,4 @@
-name: Django CI
+name: Run SQL Server and Django Tests
 
 on:
   push:

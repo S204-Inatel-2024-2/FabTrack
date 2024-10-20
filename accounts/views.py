@@ -3,18 +3,22 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
+from .forms import SignUpForm
 
 def signup_view(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = SignUpForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            user = form.save(commit=False)
+            user.first_name = form.cleaned_data.get('first_name')  # Salva o nome
+            user.email = form.cleaned_data.get('email')  # Salva o email
+            user.save()
             login(request, user)
             return redirect('/home')
         else:
             messages.error(request, 'Error occurred during signup.')
     else:
-        form = UserCreationForm()
+        form = SignUpForm()  # Use o formulário customizado
     return render(request, 'accounts/signup.html', {'form': form})
 
 def login_view(request):

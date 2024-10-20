@@ -10,15 +10,16 @@ def signup_view(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            user.first_name = form.cleaned_data.get('first_name')  # Salva o nome
-            user.email = form.cleaned_data.get('email')  # Salva o email
+            user.first_name = form.cleaned_data.get('first_name')  # Save the first name
+            user.email = form.cleaned_data.get('email')  # Save the email
+            user.is_staff = form.cleaned_data.get('is_staff')  # Set staff status based on the checkbox
             user.save()
             login(request, user)
             return redirect('/home')
         else:
             messages.error(request, 'Error occurred during signup.')
     else:
-        form = SignUpForm()  # Use o formulário customizado
+        form = SignUpForm()  # Use the custom signup form
     return render(request, 'accounts/signup.html', {'form': form})
 
 def login_view(request):

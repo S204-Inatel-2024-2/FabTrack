@@ -1,4 +1,4 @@
-<!-- admin_panel/templates/admin_panel/model_list.html-->
+<!-- admin_panel/templates/admin_panel/model_list.html -->
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +10,9 @@
 </head>
 <body>
     <div class="container">
-        <h1>Submitted Models</h1>
+        <header>
+            <h1>Submitted Models</h1>
+        </header>
         <ul class="model-list">
             {% for model in models %}
                 <li class="model-item">
@@ -23,6 +25,9 @@
                 <li class="no-models">No models submitted yet.</li>
             {% endfor %}
         </ul>
+        <div class="actions">
+            <a href="{% url 'core:home' %}" class="button btn-secondary">Return to Home</a>
+        </div>
     </div>
 </body>
 </html>

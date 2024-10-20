@@ -1,4 +1,4 @@
-<!-- accounts/templates/accounts/login.html-->
+<!-- accounts/templates/accounts/login.html -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,15 +7,17 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <header>
-        <h1>Login Page</h1>
-    </header>
     <div class="container">
+        <header>
+            <h1>Login Page</h1>
+        </header>
         <h2>Login</h2>
-        <form method="post">
+        <form method="post" class="form-container">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">Login</button>
+            <div class="form-actions">
+                <button type="submit" class="button btn-primary">Login</button>
+            </div>
         </form>
         {% if messages %}
             <div class="messages">
@@ -28,7 +30,7 @@
         {% endif %}
         <div class="signup">
             <p>Don't have an account?</p>
-            <a href="{% url 'signup' %}"><button type="button">Sign Up</button></a>
+            <a href="{% url 'signup' %}" class="button btn-secondary">Sign Up</a>
         </div>
     </div>
 </body>

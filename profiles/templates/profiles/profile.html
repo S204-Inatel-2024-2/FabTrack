@@ -7,13 +7,19 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <h1>{{ user.username }}'s Profile</h1>
-    <p>First Name: {{ user.first_name }}</p>
-    <p>Last Name: {{ user.last_name }}</p>
-    <p>Email: {{ user.email }}</p>
-    <div class="profile-actions">
-        <a href="{% url 'profile_edit' %}" class="button btn-primary">Edit Profile</a>
-        <a href="{% url 'core:home' %}" class="button btn-secondary">Return to Home</a>
+    <div class="container">
+        <header>
+            <h1>{{ user.username }}'s Profile</h1>
+        </header>
+        <div class="profile-info">
+            <p><strong>First Name:</strong> {{ user.first_name }}</p>
+            <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+        </div>
+        <div class="profile-actions">
+            <a href="{% url 'profile_edit' %}" class="button btn-primary">Edit Profile</a>
+            <a href="{% url 'core:home' %}" class="button btn-secondary">Return to Home</a>
+        </div>
     </div>
 </body>
 </html>
